@@ -3,7 +3,6 @@
 Provides realistic statuses for the fictional Aether Labs (remote SaaS).
 """
 
-from typing import Dict, List
 
 # Realistic status distribution for a small remote tech/SaaS company
 # Physical controls are largely N/A or low maturity
@@ -18,7 +17,7 @@ DEFAULT_STATUS_BY_THEME = {
 }
 
 # Specific overrides for Aether Labs (example realistic picture)
-SPECIFIC_STATUSES: Dict[str, str] = {
+SPECIFIC_STATUSES: dict[str, str] = {
     # Stronger tech / dev practices
     "A.8.5": "Implemented",   # Secure authentication
     "A.8.7": "Implemented",   # Protection against malware
@@ -48,7 +47,7 @@ def get_gap_status(control_id: str, theme: str) -> str:
     return DEFAULT_STATUS_BY_THEME.get(theme, "Partially Implemented")
 
 
-def get_all_gaps(controls: List[dict]) -> List[dict]:
+def get_all_gaps(controls: list[dict]) -> list[dict]:
     """Return list of gap items with status and notes for Aether Labs."""
     gaps = []
     for c in controls:
@@ -67,18 +66,28 @@ def get_all_gaps(controls: List[dict]) -> List[dict]:
             "status": status,
             "notes": notes,
             "owner": "Platform" if c["theme"] == "Technological" else "Management",
-            "priority": "High" if status in ("Not Implemented", "Partially Implemented") and c["theme"] != "Physical" else "Low",
+            "priority": (
+                "High"
+                if status in ("Not Implemented", "Partially Implemented")
+                and c["theme"] != "Physical"
+                else "Low"
+            ),
         })
     return gaps
 
 
-def summarize_gaps(gaps: List[dict]) -> Dict:
+def summarize_gaps(gaps: list[dict]) -> dict:
     """Return summary counts by theme and overall."""
     summary = {"by_theme": {}, "total": len(gaps)}
     for g in gaps:
         t = g["theme"]
         s = g["status"]
         if t not in summary["by_theme"]:
-            summary["by_theme"][t] = {"Implemented": 0, "Partially Implemented": 0, "Not Implemented": 0, "Not Applicable": 0}
+            summary["by_theme"][t] = {
+                "Implemented": 0,
+                "Partially Implemented": 0,
+                "Not Implemented": 0,
+                "Not Applicable": 0,
+            }
         summary["by_theme"][t][s] = summary["by_theme"][t].get(s, 0) + 1
     return summary

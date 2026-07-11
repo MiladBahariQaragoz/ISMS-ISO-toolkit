@@ -6,9 +6,10 @@ Run with:
 Loads the committed example artifacts from examples/.
 """
 
-import streamlit as st
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+import streamlit as st
 from openpyxl import load_workbook
 
 st.set_page_config(page_title="ISMS Toolkit — Aether Labs (Hobby)", layout="wide")
@@ -19,7 +20,9 @@ GAP_XLSX = ROOT / "examples" / "gap-analysis-aether-labs.xlsx"
 POLICIES_DIR = ROOT / "policies"
 
 st.title("ISMS ISO Toolkit — Hobby Explorer")
-st.caption("Personal project for ISO 27001:2022 risk & compliance automation (fictional Aether Labs)")
+st.caption(
+    "Personal project for ISO 27001:2022 risk & compliance automation (fictional Aether Labs)"
+)
 
 with st.sidebar:
     st.header("About this hobby project")
@@ -77,7 +80,9 @@ with tab_heat:
     st.markdown("The full colored heatmap is available in the generated Excel file.")
     st.write("**Top risks (by inherent score):**")
     if "Inherent Score" in risk_df.columns:
-        top5 = risk_df.nlargest(5, "Inherent Score")[["ID", "Asset", "Threat", "Inherent Score", "Rating"]]
+        top5 = risk_df.nlargest(5, "Inherent Score")[
+            ["ID", "Asset", "Threat", "Inherent Score", "Rating"]
+        ]
         st.dataframe(top5, use_container_width=True)
     else:
         st.dataframe(risk_df.head(5))
@@ -89,7 +94,10 @@ with tab_gap:
 
 with tab_pol:
     st.subheader("Policy Templates")
-    st.markdown("All policies are Markdown templates in the `policies/` folder with Annex A references.")
+    st.markdown(
+        "All policies are Markdown templates in the `policies/` folder "
+        "with Annex A references."
+    )
     policy_files = sorted(POLICIES_DIR.glob("*.md"))
     for p in policy_files:
         if p.name != "README.md":
@@ -97,4 +105,7 @@ with tab_pol:
                 st.markdown(p.read_text()[:1500] + "\n\n_(truncated — see full file)_")
 
 st.markdown("---")
-st.caption("Hobby project — everything is fictional and for demonstration purposes only. Not for production use.")
+st.caption(
+    "Hobby project — everything is fictional and for demonstration "
+    "purposes only. Not for production use."
+)

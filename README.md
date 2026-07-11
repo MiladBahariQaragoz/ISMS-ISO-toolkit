@@ -30,13 +30,34 @@ See `docs/implementation-plan.md` for the full architecture, data model, and ver
 
 See `data/company_context.md` (after Phase 0) for the full scope and asset picture used across all artifacts.
 
+## Quick Usage
+
+```bash
+# Generate all artifacts
+make all
+# or
+python scripts/generate_all.py
+
+# Run dashboard
+make dashboard
+# or
+streamlit run dashboard/app.py
+
+# Tests and lint
+make test
+make lint
+```
+
 ## Project status
 
-Early stage. Follow the implementation plan in `docs/implementation-plan.md` for traceable phases (P0–P8), each with Definition of Success and verification checklists.
+Phases P0–P6 complete (risk register, full Annex A gap analysis, 7 policy templates, methodology & control mapping, basic Streamlit dashboard).
+
+Follow `docs/implementation-plan.md` for the full traceable plan with verification checklists.
 
 See also:
-- `docs/methodology.md` (once written)
+- `docs/methodology.md`
 - `docs/control-mapping.md`
+- `policies/README.md`
 
 ## Why hobby?
 

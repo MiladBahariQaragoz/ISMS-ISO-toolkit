@@ -1,8 +1,9 @@
 """Generate Annex A gap analysis Excel (hobby toolkit)."""
 
 from pathlib import Path
+
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 from ..gap.analysis import get_all_gaps, summarize_gaps

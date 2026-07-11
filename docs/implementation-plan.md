@@ -4,7 +4,7 @@
 
 **Resume intent (not in repo):** Demonstrate hands-on risk management, compliance framework knowledge (ISO 27001:2022), policy writing, and automation skills. The repo itself must never contain "Sec-CV", "portfolio", "CV bullet", job-search references, or numbered project tags. It reads as a clean personal open-source-style hobby repo.
 
-Current state (live): P0 + P1 + P2 complete (risk calculator + 25 seeds + full Excel generator with tests + heatmap + top risks). P3 started (full 93 Annex A controls + basic gap generator). All changes committed/pushed live per rules. See todo list and git log for details.
+Current state (live): P0 + P1 + P2 + P3 complete (risk + full Annex A 93 gap with generator + structure tests). All verification checklists ticked. All changes committed/pushed live per rules. See todo list and git log for details.
 
 This plan provides the concrete blueprint, file-by-file, phase-by-phase to reach a complete, impressive, verifiable result.
 

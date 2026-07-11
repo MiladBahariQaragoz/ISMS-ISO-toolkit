@@ -1,15 +1,14 @@
 # Risk register seed for Aether Labs (hobby example)
-# Will be expanded with 22-30 realistic items in Phase 1.
-# Format used by the risk tool (subject to small evolution).
+# 25 realistic items for a small remote SaaS company.
 
 risks:
   - id: R-001
     asset: "Customer workspace database (RDS)"
     threat: "Unauthorized access / data breach"
-    vulnerability: "Overly broad IAM roles + missing MFA on some admin paths"
+    vulnerability: "Overly broad IAM roles + missing MFA enforcement on admin paths"
     likelihood: 3
     impact: 5
-    existing_controls: "AWS security groups, basic logging, encryption at rest"
+    existing_controls: "AWS security groups, encryption at rest, basic CloudTrail logging"
     treatment: "Mitigate"
     owner: "Platform team"
     review_date: "2026-10-01"
@@ -18,13 +17,243 @@ risks:
   - id: R-002
     asset: "Source code repository (GitHub)"
     threat: "Malicious code injection via compromised dependency"
-    vulnerability: "No dependency pinning + insufficient SCA in pipeline"
+    vulnerability: "No dependency pinning + insufficient SCA in CI pipeline"
     likelihood: 4
     impact: 4
-    existing_controls: "Branch protection, code review"
+    existing_controls: "Branch protection, mandatory code review, basic dependabot"
     treatment: "Mitigate"
     owner: "Engineering"
     review_date: "2026-09-15"
     status: "Open"
 
-# ... more added during Phase 1
+  - id: R-003
+    asset: "CI/CD pipelines (GitHub Actions)"
+    threat: "Supply chain attack on runner or action"
+    vulnerability: "Third-party actions pinned only by version tag, no hash"
+    likelihood: 3
+    impact: 5
+    existing_controls: "OIDC for AWS, limited secrets scope"
+    treatment: "Mitigate"
+    owner: "Platform team"
+    review_date: "2026-09-20"
+    status: "Open"
+
+  - id: R-004
+    asset: "Production AWS account root / IAM"
+    threat: "Credential compromise of privileged user"
+    vulnerability: "No hardware MFA on all break-glass accounts"
+    likelihood: 2
+    impact: 5
+    existing_controls: "IAM least privilege in most places, CloudTrail"
+    treatment: "Mitigate"
+    owner: "Platform team"
+    review_date: "2026-10-10"
+    status: "Open"
+
+  - id: R-005
+    asset: "Employee laptops / endpoints"
+    threat: "Phishing leading to credential theft + initial access"
+    vulnerability: "Inconsistent endpoint protection + no mandatory password manager"
+    likelihood: 4
+    impact: 3
+    existing_controls: "M365 conditional access, basic security awareness training"
+    treatment: "Mitigate"
+    owner: "IT / All"
+    review_date: "2026-08-30"
+    status: "Open"
+
+  - id: R-006
+    asset: "Marketing website (Vercel)"
+    threat: "Defacement or XSS leading to brand damage"
+    vulnerability: "Limited WAF rules + no automated secret scanning on deploy"
+    likelihood: 2
+    impact: 2
+    existing_controls: "HTTPS, basic CSP"
+    treatment: "Accept"
+    owner: "Marketing"
+    review_date: "2026-12-01"
+    status: "Accepted"
+
+  - id: R-007
+    asset: "Internal Slack workspace"
+    threat: "Data exfiltration by insider or compromised account"
+    vulnerability: "No DLP, public channels used for sensitive discussions"
+    likelihood: 3
+    impact: 3
+    existing_controls: "SSO, some private channels"
+    treatment: "Mitigate"
+    owner: "All teams"
+    review_date: "2026-09-01"
+    status: "Open"
+
+  - id: R-008
+    asset: "Customer PII (emails, names in workspaces)"
+    threat: "Privacy incident / GDPR violation"
+    vulnerability: "No formal data retention or deletion process"
+    likelihood: 3
+    impact: 4
+    existing_controls: "Encryption, access logging"
+    treatment: "Mitigate"
+    owner: "Platform + Legal (fictional)"
+    review_date: "2026-10-15"
+    status: "Open"
+
+  - id: R-009
+    asset: "AWS S3 buckets (customer exports, backups)"
+    threat: "Public bucket misconfiguration"
+    vulnerability: "No bucket policy enforcement + no automated config scanning"
+    likelihood: 2
+    impact: 5
+    existing_controls: "Some bucket policies, manual reviews"
+    treatment: "Mitigate"
+    owner: "Platform team"
+    review_date: "2026-09-05"
+    status: "Open"
+
+  - id: R-010
+    asset: "Developer machines + local code"
+    threat: "Loss or theft of unencrypted laptop with source"
+    vulnerability: "Full disk encryption not enforced for all OSes"
+    likelihood: 2
+    impact: 3
+    existing_controls: "Bitlocker/FileVault encouraged"
+    treatment: "Mitigate"
+    owner: "Engineering"
+    review_date: "2026-11-01"
+    status: "Open"
+
+# Additional 15 for good coverage (mixed impact areas)
+  - id: R-011
+    asset: "Production RDS snapshots"
+    threat: "Snapshot publicly shared or long-lived"
+    likelihood: 2
+    impact: 4
+    treatment: "Mitigate"
+    owner: "Platform"
+    status: "Open"
+
+  - id: R-012
+    asset: "npm / PyPI dependencies"
+    threat: "Typosquatting or malicious update"
+    likelihood: 3
+    impact: 4
+    treatment: "Mitigate"
+    owner: "Engineering"
+    status: "Open"
+
+  - id: R-013
+    asset: "Billing subsystem (Stripe integration)"
+    threat: "Fraudulent charges or data leak"
+    likelihood: 2
+    impact: 4
+    treatment: "Transfer"
+    owner: "Platform"
+    status: "Open"
+
+  - id: R-014
+    asset: "On-call / incident response process"
+    threat: "Delayed response due to missing runbooks"
+    likelihood: 3
+    impact: 3
+    treatment: "Mitigate"
+    owner: "All"
+    status: "Open"
+
+  - id: R-015
+    asset: "VPN / remote access (Tailscale or equivalent)"
+    threat: "Unauthorized device joining network"
+    likelihood: 2
+    impact: 3
+    treatment: "Mitigate"
+    owner: "Platform"
+    status: "Open"
+
+  - id: R-016
+    asset: "Linear / issue tracker data"
+    threat: "Leak of internal roadmap + customer issues"
+    likelihood: 3
+    impact: 2
+    treatment: "Accept"
+    owner: "Product"
+    status: "Accepted"
+
+  - id: R-017
+    asset: "Email (M365)"
+    threat: "Business email compromise (BEC)"
+    likelihood: 3
+    impact: 4
+    treatment: "Mitigate"
+    owner: "IT"
+    status: "Open"
+
+  - id: R-018
+    asset: "Secrets (GitHub + AWS)"
+    threat: "Secret committed to repo"
+    likelihood: 3
+    impact: 5
+    treatment: "Mitigate"
+    owner: "Engineering"
+    status: "Open"
+
+  - id: R-019
+    asset: "Support tooling (Zendesk-like)"
+    threat: "Customer data exposed to wrong agent"
+    likelihood: 2
+    impact: 3
+    treatment: "Mitigate"
+    owner: "Support"
+    status: "Open"
+
+  - id: R-020
+    asset: "Knowledge base / internal wiki"
+    threat: "Stale sensitive architecture docs"
+    likelihood: 4
+    impact: 2
+    treatment: "Mitigate"
+    owner: "Engineering"
+    status: "Open"
+
+  - id: R-021
+    asset: "AWS Lambda functions (data processing)"
+    threat: "Over-privileged execution role"
+    likelihood: 3
+    impact: 3
+    treatment: "Mitigate"
+    owner: "Platform"
+    status: "Open"
+
+  - id: R-022
+    asset: "Third-party SaaS vendors (auth, analytics)"
+    threat: "Vendor breach impacting Aether"
+    likelihood: 3
+    impact: 4
+    treatment: "Mitigate"
+    owner: "Platform"
+    status: "Open"
+
+  - id: R-023
+    asset: "Onboarding / offboarding process"
+    threat: "Former employee retains access"
+    likelihood: 3
+    impact: 3
+    treatment: "Mitigate"
+    owner: "IT"
+    status: "Open"
+
+  - id: R-024
+    asset: "Disaster recovery / backups"
+    threat: "Unrecoverable data loss after ransomware"
+    likelihood: 2
+    impact: 5
+    treatment: "Mitigate"
+    owner: "Platform"
+    status: "Open"
+
+  - id: R-025
+    asset: "Executive communications"
+    threat: "Targeted spear-phishing of leadership"
+    likelihood: 3
+    impact: 3
+    treatment: "Accept"
+    owner: "Leadership"
+    status: "Accepted"

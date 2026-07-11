@@ -238,9 +238,9 @@ Follow "always run `git status --short` before touching files".
 - No magic numbers outside documented matrix.
 
 **Verification checklist:**
-- [ ] `pytest tests/test_risk_calculator.py -q` → all green.
-- [ ] Run calculator on seed → console shows >=20 items, at least one score >=16, all scores in 1-25.
-- [ ] `ruff check src/isms_toolkit/risk tests/` clean.
+- [x] `pytest tests/test_risk_calculator.py -q` → all green.
+- [x] Run calculator on seed → console shows >=20 items, at least one score >=16, all scores in 1-25.
+- [x] `ruff check src/isms_toolkit/risk tests/` clean.
 
 **Commit/push triggers:** After P1-3 (tests passing), after P1-4 (seeds), after P1-5. Use small commits e.g. `feat(risk): implement 5x5 calculator + tests`, `feat: seed 25 realistic risks for Aether Labs`.
 
@@ -260,10 +260,10 @@ Follow "always run `git status --short` before touching files".
 - Heatmap sheet actually functions as a heatmap.
 
 **Verification checklist:**
-- [ ] Open in Excel/LibreOffice: colors match bands, filters work, no #REF errors.
-- [ ] `pytest ...` structure assertions pass (e.g. assert "Risk Register" in wb.sheetnames, len(risks) > 20, conditional formatting rules > 0).
-- [ ] `git status` shows example file added.
-- [ ] Document Control sheet has "Hobby project", date, version.
+- [x] Open in Excel/LibreOffice: colors match bands, filters work, no #REF errors.
+- [x] `pytest ...` structure assertions pass (e.g. assert "Risk Register" in wb.sheetnames, len(risks) > 20, conditional formatting rules > 0).
+- [x] `git status` shows example file added.
+- [x] Document Control sheet has "Hobby project", date, version.
 
 **Commit/push triggers:** After P2-2 (first working generator), after P2-3 (tests), after P2-4 (heatmap polish). Push every time.
 

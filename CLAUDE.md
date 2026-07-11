@@ -27,9 +27,18 @@ When following docs/implementation-plan.md:
 - Use `~/Github/ISMS-ISO-toolkit` for all work.
 - First push always uses `-u` on the feature branch.
 
+## Build / Test Commands
+- `make all` — generate risk register + gap analysis
+- `make test` — run pytest
+- `make lint` — run ruff
+- `make dashboard` — run Streamlit
+- `python scripts/generate_all.py`
+- `streamlit run dashboard/app.py`
+
 ## Future
-When adding Python risk tool, Streamlit, Excel generators:
-- Add proper tests.
-- Update this file with build/test commands (e.g. `make`, `pytest`, `python -m`).
+When extending (more frameworks, quantitative risk, etc.):
+- Add tests.
+- Update verification checklists in docs/implementation-plan.md immediately after running them.
+- Keep commits atomic and push live.
 
 Initial content: planning README only.

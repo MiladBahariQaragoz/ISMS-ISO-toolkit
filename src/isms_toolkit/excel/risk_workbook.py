@@ -4,14 +4,11 @@ Uses openpyxl for formatting, conditional colors, multiple sheets.
 """
 
 from pathlib import Path
+
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from openpyxl.formatting.rule import ColorScaleRule, CellIsRule
-from openpyxl.utils import get_column_letter
+from openpyxl.styles import Alignment, Font, PatternFill
 
 from ..risk.calculator import calculate_inherent_risk, rating_from_score
-from ..risk.models import RiskItem
-
 
 RATING_COLORS = {
     "Critical": "FF0000",   # red
@@ -38,7 +35,7 @@ def _auto_width(ws):
             try:
                 if cell.value:
                     max_length = max(max_length, len(str(cell.value)))
-            except:
+            except Exception:
                 pass
         ws.column_dimensions[column].width = min(max_length + 2, 45)
 
@@ -83,7 +80,10 @@ def create_risk_workbook(risks: list[dict], company: str = "Aether Labs") -> Wor
         ws_risk.cell(row=row_idx, column=7, value=score)
         rating_cell = ws_risk.cell(row=row_idx, column=8, value=rating)
         if rating in RATING_COLORS:
-            rating_cell.fill = PatternFill(start_color=RATING_COLORS[rating], end_color=RATING_COLORS[rating], fill_type="solid")
+            color = RATING_COLORS[rating]
+            rating_cell.fill = PatternFill(
+                start_color=color, end_color=color, fill_type="solid"
+            )
         ws_risk.cell(row=row_idx, column=9, value=r.get("existing_controls", ""))
         ws_risk.cell(row=row_idx, column=10, value=r.get("treatment", "Mitigate"))
         ws_risk.cell(row=row_idx, column=11, value=r.get("owner", ""))
@@ -108,18 +108,19 @@ def create_risk_workbook(risks: list[dict], company: str = "Aether Labs") -> Wor
     # Build matrix
     matrix = [[0 for _ in range(5)] for _ in range(5)]
     for r in risks:
-        l = r["likelihood"] - 1
-        i = r["impact"] - 1
-        matrix[l][i] += 1
+        lik_idx = r["likelihood"] - 1
+        imp_idx = r["impact"] - 1
+        matrix[lik_idx][imp_idx] += 1
 
-    for li in range(5):
-        ws_heat.cell(row=4+li, column=1, value=li+1)
-        for ii in range(5):
-            cell = ws_heat.cell(row=4+li, column=ii+2, value=matrix[li][ii])
-            score = (li+1) * (ii+1)
+    for lik_idx in range(5):
+        ws_heat.cell(row=4 + lik_idx, column=1, value=lik_idx + 1)
+        for imp_idx in range(5):
+            cell = ws_heat.cell(row=4 + lik_idx, column=imp_idx + 2, value=matrix[lik_idx][imp_idx])
+            score = (lik_idx + 1) * (imp_idx + 1)
             rating = rating_from_score(score)
             if rating in RATING_COLORS:
-                cell.fill = PatternFill(start_color=RATING_COLORS[rating], end_color=RATING_COLORS[rating], fill_type="solid")
+                color = RATING_COLORS[rating]
+                cell.fill = PatternFill(start_color=color, end_color=color, fill_type="solid")
 
     ws_heat["A10"] = "Legend: Green=Low, Yellow=Medium, Orange=High, Red=Critical"
     ws_heat["A11"] = f"Total risks: {len(risks)}"

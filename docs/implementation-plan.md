@@ -4,7 +4,7 @@
 
 **Resume intent (not in repo):** Demonstrate hands-on risk management, compliance framework knowledge (ISO 27001:2022), policy writing, and automation skills. The repo itself must never contain "Sec-CV", "portfolio", "CV bullet", job-search references, or numbered project tags. It reads as a clean personal open-source-style hobby repo.
 
-Current state (live): P0–P7 complete (orchestration, Makefile, tests/lint clean, README updated). All verification checklists ticked. All changes committed/pushed live per rules. See todo list and git log for details.
+Current state (live): P0–P8 complete. Full end-to-end verification passed. All verification checklists ticked. Project frozen. See todo list and git log.
 
 This plan provides the concrete blueprint, file-by-file, phase-by-phase to reach a complete, impressive, verifiable result.
 
@@ -389,6 +389,9 @@ Follow "always run `git status --short` before touching files".
 - History is live and atomic.
 
 **Verification checklist:** See dedicated "Verification Strategy" section below. Run it completely.
+- [x] Full run + manual + automated verification completed.
+- [x] CLAUDE.md updated with commands.
+- [x] GitHub history linear and atomic.
 
 ---
 

@@ -125,6 +125,36 @@ def create_risk_workbook(risks: list[dict], company: str = "Aether Labs") -> Wor
     ws_heat["A10"] = "Legend: Green=Low, Yellow=Medium, Orange=High, Red=Critical"
     ws_heat["A11"] = f"Total risks: {len(risks)}"
 
+    # Top risks list (highest inherent first)
+    # Sort by score descending
+    sorted_risks = sorted(
+        risks,
+        key=lambda r: r["likelihood"] * r["impact"],
+        reverse=True,
+    )[:5]
+
+    ws_heat["A13"] = "Top 5 Risks (by inherent score)"
+    ws_heat["A13"].font = Font(bold=True)
+    top_headers = ["Rank", "ID", "Asset", "Threat", "Score", "Rating"]
+    for col, h in enumerate(top_headers, 1):
+        cell = ws_heat.cell(row=14, column=col, value=h)
+        cell.font = Font(bold=True)
+        cell.fill = PatternFill(start_color="D9E1F2", end_color="D9E1F2", fill_type="solid")
+
+    for rank, r in enumerate(sorted_risks, 1):
+        score, rating = calculate_inherent_risk(r["likelihood"], r["impact"])
+        ws_heat.cell(row=14 + rank, column=1, value=rank)
+        ws_heat.cell(row=14 + rank, column=2, value=r.get("id", ""))
+        ws_heat.cell(row=14 + rank, column=3, value=r.get("asset", ""))
+        ws_heat.cell(row=14 + rank, column=4, value=r.get("threat", ""))
+        ws_heat.cell(row=14 + rank, column=5, value=score)
+        rating_cell = ws_heat.cell(row=14 + rank, column=6, value=rating)
+        if rating in RATING_COLORS:
+            color = RATING_COLORS[rating]
+            rating_cell.fill = PatternFill(
+                start_color=color, end_color=color, fill_type="solid"
+            )
+
     # 4. Summary
     ws_sum = wb.create_sheet("Summary")
     ws_sum["A1"] = "Risk Summary"

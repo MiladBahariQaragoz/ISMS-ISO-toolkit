@@ -283,10 +283,10 @@ Follow "always run `git status --short` before touching files".
 - SoA excerpt looks like a real one.
 
 **Verification checklist:**
-- [ ] `python -c "import json; data=json.load(open('data/annex_a_controls.json')); assert len(data)==93"`
-- [ ] Generated gap xlsx has 93+ rows in controls sheet, correct theme distribution (37/8/14/34).
-- [ ] Summary sheet math checks out.
-- [ ] Manual spot check 5 controls have sensible status + notes for Aether.
+- [x] `python -c "import json; data=json.load(open('data/annex_a_controls.json')); assert len(data)==93"`
+- [x] Generated gap xlsx has 93+ rows in controls sheet, correct theme distribution (37/8/14/34).
+- [x] Summary sheet math checks out.
+- [x] Manual spot check 5 controls have sensible status + notes for Aether.
 
 **Commit/push triggers:** After P3-1 (data), after working generator + tests. Atomic commits.
 
@@ -497,8 +497,9 @@ This plan is self-contained enough to execute without further high-level researc
    - Commit atomically.
    - Push immediately.
 5. Mark task IDs as complete only after its Definition of Success + Verification checklist pass.
-6. Update this plan.md (or a simple PROGRESS.md) with status if desired for traceability.
-7. When stuck on a phase, re-read the Definition of Success and Verification before writing more code.
+6. **Critical:** After running any command listed in a phase's Verification checklist, immediately change the corresponding [ ] to [x] in this file. Do not rely solely on todo lists or commit messages — the checkboxes in this document are the source of truth.
+7. Update this plan.md (or a simple PROGRESS.md) with status if desired for traceability.
+8. When stuck on a phase, re-read the Definition of Success and Verification before writing more code.
 
 This produces a clean, live GitHub history and a project that is easy to maintain/extend later.
 

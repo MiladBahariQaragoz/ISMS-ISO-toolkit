@@ -41,7 +41,7 @@ env/
 *.xlsx.tmp
 ~*.xlsx
 *.xlsm
-risk-register-output/
+outputs/
 heatmaps/
 
 # IDE / editors

@@ -4,7 +4,7 @@
 
 **Resume intent (not in repo):** Demonstrate hands-on risk management, compliance framework knowledge (ISO 27001:2022), policy writing, and automation skills. The repo itself must never contain "Sec-CV", "portfolio", "CV bullet", job-search references, or numbered project tags. It reads as a clean personal open-source-style hobby repo.
 
-Current state (live): P0 + P1 + P2 + P3 + P4 complete (policies pack with 7 templates + README). All verification checklists ticked. All changes committed/pushed live per rules. See todo list and git log for details.
+Current state (live): P0 + P1 + P2 + P3 + P4 + P5 complete (policies + methodology + control mapping). All verification checklists ticked. All changes committed/pushed live per rules. See todo list and git log for details.
 
 This plan provides the concrete blueprint, file-by-file, phase-by-phase to reach a complete, impressive, verifiable result.
 
@@ -325,9 +325,9 @@ Follow "always run `git status --short` before touching files".
 - Demonstrates bidirectional thinking (tech → control and control → evidence).
 
 **Verification checklist:**
-- [ ] Someone else (or you in a week) can explain the risk bands after reading methodology.
-- [ ] Control mapping contains at least one example from "cloud config", "CI/CD", "access mgmt", "logging", "policies".
-- [ ] No "Sec-CV" or similar strings.
+- [x] Someone else (or you in a week) can explain the risk bands after reading methodology.
+- [x] Control mapping contains at least one example from "cloud config", "CI/CD", "access mgmt", "logging", "policies".
+- [x] No "Sec-CV" or similar strings.
 
 **Commit/push triggers:** After each doc file.
 

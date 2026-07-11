@@ -11,9 +11,16 @@ ISMS / ISO 27001 toolkit: risk register automation, Annex A gap analysis, policy
 - Always work on a feature branch. Never commit/push directly to `main`.
 - Branch naming: `feat/<kebab>`, `fix/<kebab>`, `chore/<kebab>`.
 - Atomic commits: one logical change per commit.
-- Before committing: run available lint/typecheck/test (none yet).
+- Before committing: run available lint/typecheck/test.
 - Before edits: `git status --short`.
 - Required in every `.gitignore`: node_modules/, .env*, dist/, build/, .next/, .DS_Store (already present).
+
+## Verification Discipline (critical)
+When following docs/implementation-plan.md:
+- After running any verification command listed in a phase's "Verification checklist", immediately update the corresponding [ ] → [x] in the plan.
+- Do not mark a task complete based only on todo lists or memory.
+- The checkboxes inside implementation-plan.md are the authoritative record.
+- This rule applies for the entire duration of the project.
 
 ## Workflow
 - Source of truth for development moved out of GoogleDrive FUSE (unreliable for active work).

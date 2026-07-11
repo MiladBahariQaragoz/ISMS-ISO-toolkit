@@ -1,0 +1,14 @@
+[
+  {
+    "id": "A.5.1",
+    "title": "Policies for information security",
+    "theme": "Organizational",
+    "description": "Define and approve security policies at the management level."
+  },
+  {
+    "id": "A.5.2",
+    "title": "Information Security Roles and Responsibilities",
+    "theme": "Organizational",
+    "description": "Allocate specific security tasks to individuals."
+  }
+]

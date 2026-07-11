@@ -1,54 +1,60 @@
-# 06 — ISMS-in-a-Box: ISO 27001 / Risk & Compliance Toolkit
+# ISMS ISO Toolkit
 
-**Difficulty:** ⭐⭐⭐ · **Est. effort:** 3–4 weeks · **Repo name idea:** `isms-in-a-box`
+A personal hobby project: Python automation for ISO 27001:2022 risk registers, Annex A gap analysis, policy templates, and control mapping — using a realistic fictional small company.
 
-## Why this project
-This covers the **governance/GRC half of the demand that pure technical projects miss**:
-**compliance (35%)**, **risk assessment (32%)**, **ISO 27001 (8%)**, security policies,
-governance. Many German roles (IT Security Coordinator — the #1 role title in your data,
-12 postings; Consultant; Working Student GRC) are **GRC-heavy, not hands-on-hacking**. This
-makes you credible for them.
+All examples and artifacts are built for **Aether Labs** (a made-up 22-person remote-first SaaS company). The goal is learning by producing clean, usable GRC artifacts and the code that generates them.
 
-## Skills this proves (put on CV)
-- **Risk assessment & risk management** (methodology, risk register)
-- **Compliance** & **ISO 27001 / NIST CSF** familiarity
-- **Security policies** & governance (ISMS documentation)
-- Security **audits** & gap analysis
+## What it produces
 
-## Scope / what you build
-A practical, reusable **GRC toolkit** + a worked example ISMS for a fictional small company —
-part documents, part automation.
+1. **Risk register tool** — Python + Excel. Asset inventory, threat/vulnerability pairs, 5×5 likelihood × impact scoring, treatment plans, residual risk, and a visual heatmap.
+2. **Annex A (2022) gap analysis** — Full 93-control checklist with realistic statuses for the fictional company, theme summaries, and a Statement of Applicability excerpt.
+3. **Policy pack** — 7 practical Markdown policy templates (Information Security, Acceptable Use, Access Control, Incident Management, Business Continuity, Supplier Security, Data Protection).
+4. **Control mapping** — How common technical and operational practices map to ISO 27001 controls (with notes on NIST CSF 2.0 and BSI Grundschutz).
+5. **Streamlit dashboard** — Interactive explorer for the generated risk and gap data.
 
-1. **Risk register (automation):** a Python/Excel-driven **risk assessment** tool —
-   asset inventory → threats → likelihood × impact → risk score → treatment plan. Output a
-   clean risk register and a heat-map.
-2. **ISO 27001 gap analysis:** a checklist mapping the **Annex A (2022) controls** to
-   "implemented / partial / missing" for the fictional company, with evidence notes.
-3. **Policy pack:** write real, usable policy templates — Information Security Policy,
-   Access Control, Acceptable Use, Incident Response, BCP/DR, supplier security.
-4. **Control mapping:** cross-map your technical projects (01 hardening, 03 IR, 05 pipeline)
-   to the ISO 27001 / NIST CSF / **BSI Grundschutz** controls they satisfy — this *ties your
-   whole portfolio together* and shows you connect tech to governance.
-5. **Bonus:** a small Streamlit dashboard over the risk register.
+Everything is data-driven and reproducible.
 
-## Definition of done
-- [ ] Public repo: risk-assessment tool + sample risk register + heat-map.
-- [ ] ISO 27001 Annex A gap-analysis spreadsheet for the example company.
-- [ ] 5+ written policy templates.
-- [ ] A control-mapping doc linking your other Sec-CV projects to framework controls.
+## Quick start (once built)
 
-## Build order
-1. Read ISO 27001/27002 structure + NIST CSF; learn the control families.
-2. Build the risk-register tool; populate it for the fictional company.
-3. Run the Annex A gap analysis.
-4. Write the policy pack; build the cross-project control map.
+```bash
+# after setup
+python -m scripts.generate_all
+streamlit run dashboard/app.py
+```
 
-## Learning resources
-- ISO/IEC 27001:2022 & 27002 overviews, NIST CSF 2.0, **BSI IT-Grundschutz** (German market!).
-- ENISA risk-management guidance; OpenFAIR for quantitative risk (optional).
-- Consider a **CISM/ISO 27001 Foundation** awareness course later.
+See `docs/implementation-plan.md` for the full architecture, data model, and verification steps.
 
-## CV bullet (target)
-> Built an ISMS toolkit — a Python risk-assessment/register tool, an ISO 27001:2022 Annex A
-> gap analysis, and a policy pack — and mapped technical controls to ISO 27001 / NIST CSF /
-> BSI Grundschutz for a sample organisation.
+## Fictional company
+
+**Aether Labs** — remote EU team of ~22 building a lightweight SaaS collaboration platform ("Aether") for small engineering teams. Heavy AWS + modern dev tooling, customer data with some PII, open source dependencies, remote workforce.
+
+See `data/company_context.md` (after Phase 0) for the full scope and asset picture used across all artifacts.
+
+## Project status
+
+Early stage. Follow the implementation plan in `docs/implementation-plan.md` for traceable phases (P0–P8), each with Definition of Success and verification checklists.
+
+See also:
+- `docs/methodology.md` (once written)
+- `docs/control-mapping.md`
+
+## Why hobby?
+
+Built for personal understanding of ISMS mechanics, risk methodology, and turning dry compliance work into something automated and visual. All content stays educational and fictional.
+
+## License
+
+MIT (hobby / personal use friendly).
+
+## Contributing
+
+This is a personal project. Issues and PRs for improvements are welcome but not expected.
+
+## Learning resources used
+
+- ISO/IEC 27001:2022 & 27002
+- NIST CSF 2.0
+- Common risk register patterns (5×5 qualitative)
+- Public Annex A control references
+
+Contributions that improve accuracy or usability are appreciated.

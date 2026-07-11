@@ -1,0 +1,30 @@
+# Risk register seed for Aether Labs (hobby example)
+# Will be expanded with 22-30 realistic items in Phase 1.
+# Format used by the risk tool (subject to small evolution).
+
+risks:
+  - id: R-001
+    asset: "Customer workspace database (RDS)"
+    threat: "Unauthorized access / data breach"
+    vulnerability: "Overly broad IAM roles + missing MFA on some admin paths"
+    likelihood: 3
+    impact: 5
+    existing_controls: "AWS security groups, basic logging, encryption at rest"
+    treatment: "Mitigate"
+    owner: "Platform team"
+    review_date: "2026-10-01"
+    status: "Open"
+
+  - id: R-002
+    asset: "Source code repository (GitHub)"
+    threat: "Malicious code injection via compromised dependency"
+    vulnerability: "No dependency pinning + insufficient SCA in pipeline"
+    likelihood: 4
+    impact: 4
+    existing_controls: "Branch protection, code review"
+    treatment: "Mitigate"
+    owner: "Engineering"
+    review_date: "2026-09-15"
+    status: "Open"
+
+# ... more added during Phase 1

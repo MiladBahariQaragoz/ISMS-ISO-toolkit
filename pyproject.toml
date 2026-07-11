@@ -1,0 +1,36 @@
+[project]
+name = "isms-iso-toolkit"
+version = "0.1.0"
+description = "Personal hobby project: Python tools for ISO 27001 risk registers, Annex A gap analysis, and policy templates (fictional company examples)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+  {name = "Personal hobby project"}
+]
+dependencies = [
+  "openpyxl>=3.1",
+  "pyyaml>=6.0",
+  "streamlit>=1.35",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.5",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

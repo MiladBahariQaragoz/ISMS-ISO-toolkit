@@ -1,0 +1,13 @@
+# Asset inventory seed (Aether Labs hobby example)
+assets:
+  - id: AST-001
+    name: "Customer workspace database (RDS PostgreSQL)"
+    owner: "Platform"
+    classification: "Confidential"
+    cia: {c: 5, i: 5, a: 4}
+
+  - id: AST-002
+    name: "GitHub organization + source repositories"
+    owner: "Engineering"
+    classification: "Confidential"
+    cia: {c: 5, i: 5, a: 3}
